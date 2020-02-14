@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'directors_database'
-
+require 'pp'
 def directors_totals(nds)
   # Remember, it's always OK to pretty print what you get *in* to make sure
   # that you know what you're starting with!
@@ -18,5 +18,18 @@ def directors_totals(nds)
   #
   #
   # Be sure to return the result at the end!
-  nil
+  #pp directors_database
+  
+  #directors_database[0][:movies].length.times do |index|
+  #puts directors_database[0][:movies][index][:title]
+  #end
+  retHash = {}
+  nds.length.times do |index_i|
+    name = nds[index_i][:name]
+    retHash[name] = 0
+    nds[index_i][:movies].length.times do |index_j|
+        retHash[name]+=nds[index_i][:movies][index_j][:worldwide_gross]
+    end 
+  end  
+  return retHash
 end
